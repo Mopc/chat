@@ -1,0 +1,37 @@
+@font-face {
+			font-family: "Karla-Bold";
+/*			src: url("../../fonts/GloberLight/GloberLight.eot");
+			src: url("../../fonts/GloberThin/GloberLight.eot?#iefix")format("embedded-opentype"),
+			url("../../fonts/GloberLight/Glober-Light.woff") format("woff"),*/
+			src: url("fonts/Karla-Bold.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
+
+	@font-face {
+			font-family: "Karla-BoldItalic";
+/*			src: url("../../fonts/GloberBold/GloberBold.eot");
+			src: url("../../fonts/GloberBold/GloberBold.eot?#iefix")format("embedded-opentype"),
+			url("../../fonts/GloberBold/GloberBold.woff") format("woff"),*/
+			src: url("fonts/Karla-BoldItalic.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
+	@font-face {
+			font-family: "Karla-Italic";
+/*			src: url("../../fonts/GloberRegular/Fontfabric - GloberRegular.eot");
+			src: url("../../fonts/GloberRegular/Fontfabric - GloberRegular.eot?#iefix")format("embedded-opentype"),
+			url("../../fonts/GloberRegular/Fontfabric - GloberRegular.woff") format("woff"),*/
+			src: url("fonts/Karla-Italic.ttf") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
+	@font-face {
+			font-family: "Karla-Regular";
+/*			src: url("../../fonts/GloberRegular/Fontfabric - GloberRegular.eot");
+			src: url("../../fonts/GloberRegular/Fontfabric - GloberRegular.eot?#iefix")format("embedded-opentype"),*/
+			src: url("fonts/Karla-Regular.woff") format("woff"),
+			url("fonts/Karla-Regular") format("truetype");
+			font-style: normal;
+			font-weight: normal;
+	}
