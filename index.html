@@ -2,53 +2,27 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-	<style type="text/css">
-		body {
-			margin: 0;
-			font-size: 28px;
-		}
-		.panel {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-		    padding: 10px;
-		    box-sizing: border-box;
-		    background: #e2e2e2;
-		}
-		input {
-			font-size: inherit;
-			width: 100%;
-		}
-
-		.inputs {
-			display: flex;
-		}
-
-		.input-left {
-			max-width: 20%;
-			padding-right: 0.5em;
-		}
-
-		.input-left, .input-right {
-			flex-grow: 1;
-		}
-	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="fonst.css">
 	<title>Chat</title>
 </head>
 <body>
+	<div class="header"></div>
 	<div id="messages">
-		<p align="center" id="greeting">Добро пожаловать в чат!</p>
+		<div class="time">
+			<img src="clock.png" alt="clock">
+			<p>Today at 10:45 AM</p>
+		</div>
 	</div>
 	<div class="panel">
 		<form onsubmit="sendMessage(this.nickname.value, this.message.value); this.message.value = ''; return false">
 			<div class="inputs">
 				<div class="input-left">
-					<input name="nickname" placeholder="nickname" type="text" autofocus="" autocomplete="off"></input> 
+					<input name="nickname" placeholder="Your nickname" type="text" autofocus="" autocomplete="off"></input> 
 				</div>
 				<div class="input-right">
-					<input name="message" placeholder="message" type="text" autocomplete="off"></input>
+					<input name="message" placeholder="Type message..." type="text" autocomplete="off"></input>
 				</div>
 			</div>
 			<input type="submit" style="display: none" />
@@ -56,23 +30,20 @@
 	</div>
 
 	<script type="text/javascript">
-		var socket = io({transports: ['websocket']});
+		var socket = io({transports: ['websocket']}); //все сохраняется в socket. Используется только технология websocket
 		var messagesContainer = document.getElementById('messages');
-
 		socket.on('message', function(data) {
 			renderMessage(data);
 		})
-
 		function sendMessage(nickname, message) {
-			if(nickname && message)
-				socket.emit('message', renderMessage({nickname: nickname, message: message}));
+			if(nickname && message) //отправка сообщения по сокету
+				socket.emit('message', renderMessage({nickname: nickname, message: message})); // генерирует событие (отправляет сообщение через вебсокеты на сервер
 		}
-
 		function renderMessage(data) {
 			var div = document.createElement('DIV');
-			div.innerHTML = '<span><strong>' + data.nickname + ': </strong>' + data.message + '</span>';
-			messagesContainer.insertBefore(div, messagesContainer.firstChild);
-			document.getElementById('greeting').style.display = 'none';
+			div.innerHTML = '<strong>' + data.nickname + ' </strong><span>' + data.message + '</span>';
+			messagesContainer.insertBefore(div, messagesContainer.lastChild);
+			// document.getElementById('greeting').style.display = 'none';
 			return data;
 		}
 	</script>
